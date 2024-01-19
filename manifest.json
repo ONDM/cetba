@@ -2,7 +2,7 @@
   "name": "Knihy - četba",
   "short_name": "Knihy",
   "description": "Offline knihy",
-  "start_url": "/",
+  "start_url": "/cetba/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
