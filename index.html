@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="sw.js"></script>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="favicon.png" sizes="626x626">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+  <title>Knihy - četba</title>
+</head>
+
+<body>
+  <div id="content" class="hidden">
+  <div class="buttons-container">
+    <button onclick="showContent(1)"><span class="button-number">1</span>Hamlet</button>
+    <button onclick="showContent(2)"><span class="button-number">2</span>Romeo a Julie</button>
+    <button onclick="showContent(3)"><span class="button-number">3</span>Robinson Crusoe</button>
+    <button onclick="showContent(4)"><span class="button-number">4</span>Král Lávra</button>
+    <button onclick="showContent(5)"><span class="button-number">5</span>Máj</button>
+    <button onclick="showContent(6)"><span class="button-number">6</span>Strakonický dudák</button>
+    <button onclick="showContent(7)"><span class="button-number">7</span>Otec Goriot</button>
+    <button onclick="showContent(8)"><span class="button-number">8</span>Na západní frontě klid</button>
+    <button onclick="showContent(9)"><span class="button-number">9</span>Malý princ</button>
+    <button onclick="showContent(10)"><span class="button-number">10</span>Petr a Lucie</button>
+    <button onclick="showContent(11)"><span class="button-number">11</span>Sbohem armádo</button>
+    <button onclick="showContent(12)"><span class="button-number">12</span>Pygmalion</button>
+    <button onclick="showContent(13)"><span class="button-number">13</span>Smrt krásných srnců</button>
+    <button onclick="showContent(14)"><span class="button-number">14</span>Bylo nás pět</button>
+    <button onclick="showContent(15)"><span class="button-number">15</span>Slavnosti sněženek</button>
+    <button onclick="showContent(16)"><span class="button-number">16</span>NEZADÁNO</button>
+    <button onclick="showContent(17)"><span class="button-number">17</span>NEZADÁNO</button>
+    <button onclick="showContent(18)"><span class="button-number">18</span>NEZADÁNO</button>
+    <button onclick="showContent(19)"><span class="button-number">19</span>NEZADÁNO</button>
+    <button onclick="showContent(20)"><span class="button-number">20</span>NEZADÁNO</button>
+  </div>
+  </div>
+  <div id="script-form" class="script-form hidden">
+    <h2>ZADEJ HESLO:</h2>
+    <input type="password" id="script" required>
+    <button id="unlock-button" onclick="checkscript()">Odemknout</button>
+    <strong><p id="incorrect-script" class="hidden">Zadané heslo není správné.</p></strong>
+  </div>
+</body>
+
+</html>
