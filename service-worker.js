@@ -7,7 +7,7 @@ self.addEventListener('install', (event) =>
   caches.open(cacheName).then((cache) =>
   {
     return cache.addAll([
-      '/',
+      '/cetba/',
       '/cetba/manifest.json',
       '/cetba/style.css',
       '/cetba/script.js',
