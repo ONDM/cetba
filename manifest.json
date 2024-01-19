@@ -1,0 +1,17 @@
+{
+  "name": "Knihy - četba",
+  "short_name": "Knihy",
+  "description": "Offline knihy",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons":
+  [
+    {
+      "src": "favicon.png",
+      "sizes": "626x626",
+      "type": "image/png"
+    }
+  ]
+}
