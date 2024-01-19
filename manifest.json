@@ -9,7 +9,7 @@
   "icons":
   [
     {
-      "src": "favicon.png",
+      "src": "/cetba/favicon.png",
       "sizes": "626x626",
       "type": "image/png"
     }
