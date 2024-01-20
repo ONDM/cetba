@@ -46,6 +46,13 @@ body
   background-color: rgba(51, 219, 102, 1);
 }
 
+#ond
+{
+  color: whitesmoke;
+  transform: translate(0px, -122px);
+  font-size: 12px;
+}
+
 .buttons-back
 {
   font-family: 'font1', Arial, sans-serif;
