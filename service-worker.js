@@ -14,6 +14,7 @@ self.addEventListener('install', (event) =>
       '/cetba/favicon.png',
       '/cetba/font.woff2',
       '/cetba/sw.js',
+      '/cetba/logo.png',
       '/cetba/folder/1/1A.jpg', '/cetba/folder/1/1B.jpg',
       '/cetba/folder/2/2A.jpg', '/cetba/folder/2/2B.jpg',
       '/cetba/folder/3/3A.jpg', '/cetba/folder/3/3B.jpg',
