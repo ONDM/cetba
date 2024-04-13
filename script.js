@@ -477,6 +477,9 @@ function goBack()
 
 document.addEventListener("DOMContentLoaded", function ()
 {
+  var timeDisplay = document.getElementById("time-display");
+  timeDisplay.style.display = "none";
+  
   function toggleTimeDisplay()
   {
     if (timeDisplay.style.display === "none")
