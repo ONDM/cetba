@@ -479,7 +479,6 @@ document.addEventListener("DOMContentLoaded", function ()
 {
   function toggleTimeDisplay()
   {
-    var timeDisplay = document.getElementById("time-display");
     if (timeDisplay.style.display === "none")
     {
       timeDisplay.style.display = "block";
