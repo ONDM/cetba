@@ -175,10 +175,9 @@ function checkscript()
     return;
   }
 
-  var storedPassword = ''; // ULOŽENÉ HESLO PRO PŘÍPAD NEFUNKČNOSTI HESLA ZE SKRYTÉHO JSON SOUBORU
+  var storedPassword = '';
   try
   {
-    // HESLO ZE SKRYTÉHO JSON SOUBORU
     var request = new XMLHttpRequest();
     request.open('GET', 'pass.json', false);
     request.send(null);
