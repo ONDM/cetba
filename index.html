@@ -2,58 +2,106 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/cetba/style.css">
-  <script src="/cetba/script.js"></script>
-  <script src="/cetba/service-worker.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="style.css">
   <script src="/cetba/sw.js"></script>
   <link rel="manifest" href="/cetba/manifest.json">
   <link rel="icon" href="/cetba/favicon.png" sizes="626x626">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+  </script>
   <title>Knihy - četba</title>
 </head>
 <body>
-  <body>
   <div id="time-display-container">
-    <img src="/cetba/logo.png" alt="Image" id="time-image">
+    <img src="logo.png" alt="Image" id="time-image">
     <div id="time-display" class="time-display"></div>
   </div>
   <div id="gradient-container">
     <div class="gradient"></div>
   </div>
   <div class="container">
-  <div id="content" class="hidden">
-  <div class="buttons-container">
-    <button onclick="showContent(1)"><span class="button-number">1</span>Hamlet</button>
-    <button onclick="showContent(2)"><span class="button-number">2</span>Romeo a Julie</button>
-    <button onclick="showContent(3)"><span class="button-number">3</span>Robinson Crusoe</button>
-    <button onclick="showContent(4)"><span class="button-number">4</span>Král Lávra</button>
-    <button onclick="showContent(5)"><span class="button-number">5</span>Máj</button>
-    <button onclick="showContent(6)"><span class="button-number">6</span>Strakonický dudák</button>
-    <button onclick="showContent(7)"><span class="button-number">7</span>Otec Goriot</button>
-    <button onclick="showContent(8)"><span class="button-number">8</span>Na západní frontě klid</button>
-    <button onclick="showContent(9)"><span class="button-number">9</span>Malý princ</button>
-    <button onclick="showContent(10)"><span class="button-number">10</span>Petr a Lucie</button>
-    <button onclick="showContent(11)"><span class="button-number">11</span>Sbohem armádo</button>
-    <button onclick="showContent(12)"><span class="button-number">12</span>Pygmalion</button>
-    <button onclick="showContent(13)"><span class="button-number">13</span>Smrt krásných srnců</button>
-    <button onclick="showContent(14)"><span class="button-number">14</span>Bylo nás pět</button>
-    <button onclick="showContent(15)"><span class="button-number">15</span>Slavnosti sněženek</button>
-    <button onclick="showContent(16)"><span class="button-number">16</span>NEZADÁNO</button>
-    <button onclick="showContent(17)"><span class="button-number">17</span>NEZADÁNO</button>
-    <button onclick="showContent(18)"><span class="button-number">18</span>NEZADÁNO</button>
-    <button onclick="showContent(19)"><span class="button-number">19</span>NEZADÁNO</button>
-    <button onclick="showContent(20)"><span class="button-number">20</span>NEZADÁNO</button>
+    <div id="content" class="hidden">
+      <div class="buttons-container">
+        <button><span class="button-number">1</span>Robinson Crusoe</button>
+        <button><span class="button-number">2</span>Hamlet</button>
+        <button><span class="button-number">3</span>Romeo a Julie</button>
+        <button><span class="button-number">4</span>Máj</button>
+        <button><span class="button-number">5</span>Král Lávra</button>
+        <button><span class="button-number">6</span>Kytice</button>
+        <button><span class="button-number">7</span>Strakonický dudák</button>
+        <button><span class="button-number">8</span>Otec Goriot</button>
+        <button><span class="button-number">9</span>Na Západní frontě klid</button>
+        <button><span class="button-number">10</span>Farma zvířat</button>
+        <button><span class="button-number">11</span>1984</button>
+        <button><span class="button-number">12</span>Malý princ</button>
+        <button><span class="button-number">13</span>Petr a Lucie</button>
+        <button><span class="button-number">14</span>Stařec a moře</button>
+        <button><span class="button-number">15</span>Pygmalion</button>
+        <button><span class="button-number">16</span>Slavnosti sněženek</button>
+        <button><span class="button-number">17</span>Smrt krásných srnců</button>
+        <button><span class="button-number">18</span>Bylo nás pět</button>
+        <button><span class="button-number">19</span>Bílá nemoc</button>
+        <button><span class="button-number">20</span>Matka</button>
+      </div>
+    </div>
+    <!-- Obsahové divy pro každý obsah -->
+    <div id="content-1" class="content hidden"></div>
+    <div id="content-2" class="content hidden"></div>
+    <div id="content-3" class="content hidden"></div>
+    <div id="content-4" class="content hidden"></div>
+    <div id="content-5" class="content hidden"></div>
+    <div id="content-6" class="content hidden"></div>
+    <div id="content-7" class="content hidden"></div>
+    <div id="content-8" class="content hidden"></div>
+    <div id="content-9" class="content hidden"></div>
+    <div id="content-10" class="content hidden"></div>
+    <div id="content-11" class="content hidden"></div>
+    <div id="content-12" class="content hidden"></div>
+    <div id="content-13" class="content hidden"></div>
+    <div id="content-14" class="content hidden"></div>
+    <div id="content-15" class="content hidden"></div>
+    <div id="content-16" class="content hidden"></div>
+    <div id="content-17" class="content hidden"></div>
+    <div id="content-18" class="content hidden"></div>
+    <div id="content-19" class="content hidden"></div>
+    <div id="content-20" class="content hidden"></div>
+    <div id="script-form" class="script-form">
+      <h2>ZADEJ HESLO:</h2>
+      <input type="password" id="script" required>
+      <button id="unlock-button" onclick="checkScript()">Odemknout</button>
+      <strong><p id="incorrect-script" class="hidden">Zadané heslo není správné.</p></strong>
+    </div>
   </div>
-  </div>
-  <div id="script-form" class="script-form hidden">
-    <div class="snowflakes" id="snowflakes-container"></div>
-    <h2>ZADEJ HESLO:</h2>
-    <input type="password" id="script" required>
-    <button id="unlock-button" onclick="checkscript()">Odemknout</button>
-    <!-- <p id="ond">OND</p> -->
-    <strong><p id="incorrect-script" class="hidden">Zadané heslo není správné.</p></strong>
-  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Detekce mobilního zařízení
+      var isMobile = window.innerWidth <= 600;
+
+      if (isMobile) {
+        // Přizpůsobení pro mobilní zobrazení
+        document.documentElement.style.overflowX = 'hidden';
+        document.body.style.overflowX = 'hidden';
+
+        // Kontrola správného nastavení pro PDF
+        document.addEventListener('click', function(e) {
+          if (e.target && e.target.matches('button')) {
+            setTimeout(function() {
+              var pdfObjects = document.querySelectorAll('object[type="application/pdf"]');
+              pdfObjects.forEach(function(obj) {
+                obj.style.width = '100%';
+                obj.style.height = '100%';
+              });
+            }, 500);
+          }
+        });
+      }
+    });
+  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
