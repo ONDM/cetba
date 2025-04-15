@@ -11,6 +11,7 @@ body
   background-size: cover;
   background-position: center;
   background: #141414;
+  overflow: hidden;
 }
 
 .gradient
@@ -34,6 +35,7 @@ body
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100%;
 }
 
 #gradient-container
@@ -85,13 +87,29 @@ body
   font-style: normal;
 }
 
-#content
-{
+.content {
   position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-#content button#back-button
-{
+/* Styly pro PDF wrapper */
+.pdf-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Styly pro PDF iframe */
+.pdf-iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.content button#back-button {
   position: absolute;
   top: 6px;
   left: 6px;
@@ -103,19 +121,20 @@ body
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  z-index: 10; /* Tlačítko nad PDF */
 }
 
-#content button#back-button:hover
-{
+.content button#back-button:hover {
   background-color: rgba(51, 219, 102, 1);
 }
 
-/*#ond
-{
-  color: whitesmoke;
-  transform: translate(0px, -122px);
-  font-size: 12px;
-}*/
+.buttons-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 90%;
+  margin: 0 auto;
+}
 
 .buttons-back
 {
@@ -183,7 +202,7 @@ button#unlock-button:hover
   background-color: #212121;
   outline-color: rgb(32, 55, 85);
   box-shadow: 0px 0px 15px rgb(46, 97, 163);
-  transition: .1s;N
+  transition: .1s;
   transition-property: box-shadow;
 }
 
@@ -204,8 +223,25 @@ button
   height: 80px;    /* Pevná výška tlačítek pro všechna zařízení */
 }
 
-/* TLAČÍTKA PRO VELKÝ OBRAZOVKY */
-@media only screen and (min-width: 601px)
+#pdf-viewer-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #333; /* Tmavé pozadí kolem PDF stránek */
+  padding: 0;
+  margin: 0;
+}
+
+/* Styly pro jednotlivé canvas stránek PDF */
+#pdf-viewer-container canvas {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+@media only screen and (min-width: 801px)
 {
   button
   {
@@ -230,7 +266,7 @@ button
 
 .hidden
 {
-  display: none;
+  display: none !important;
 }
 
 .buttons-container
@@ -238,6 +274,7 @@ button
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
+  width: 860px;
 }
 
 button:hover
@@ -280,18 +317,24 @@ button:hover
 }
 
 /* STYLY JEN PRO MOBILY */
-@media only screen and (max-width: 400px)
+@media only screen and (max-width: 600px)
 {
+  body
+  {
+    overflow-x: hidden;
+  }
+
   button
   {
     width: 99%;    /* Tlačítka na plnou šířku */
-    margin-bottom: 5px;
-    height: 48px;    /* Pevná výška tlačítek pro všechna zařízení */
+    margin-bottom: 3px;
+    height: 55px;    /* Pevná výška tlačítek pro všechna zařízení */
   }
 
   .buttons-container
   {
     grid-template-columns: 1fr 1fr;    /* Dvě řady tlačítek */
+    gap: 5px;
   }
 
   .buttons-back
@@ -304,42 +347,53 @@ button:hover
     margin: 20px;
   }
 
-  img
-  {
-    max-width: 100%;
-    max-height: 90vh;
-  }
-}
+    .content {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
 
-/* Padání vloček */
-.snowflakes
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-}
+    .content iframe {
+      width: 100%;
+      height: 100%;
+      transform: scale(1);
+      transform-origin: top left;
+    }
+    
+    .content button#back-button {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 100;
+      width: 50px;
+      height: 40px;
+      opacity: 0.9;
+      background-color: rgba(51, 219, 102, 0.9);
+    }
 
-.snowflake
-{
-  position: absolute;
-  color: #fff;
-  font-size: 20px;
-  animation: fall linear infinite;
-}
+    #pdf-viewer-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch; /* Pro plynulý scroll na iOS */
+    }
 
-@keyframes fall
-{
-  0%
-  {
-    transform: translateY(-10vh);
-  }
-  100%
-  {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
+    #pdf-viewer-container canvas {
+      margin: 0 auto; /* Canvas vycentrován */
+      padding: 0;
+      display: block;
+      width: 110%; /* Využití celé šířky */
+      height: auto;
+      box-shadow: none;
+    }
+
+    .buttons-container
+    {
+      width: 420px;
+    }
 }
